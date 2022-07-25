@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+targetNamespace="http://sqlmap.autoever.org/mapping"
+elementFormDefault="qualified"
+xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="http://sqlmap.autoever.org/mapping"
+xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense"
+vs:friendlyname="SQL mapping file Schema"
+vs:ishtmlschema="false"
+vs:iscasesensitive="true"
+vs:requireattributequotes="true"
+vs:defaultnamespacequalifier=""
+vs:defaultnsPrepend="">
+
+  <xs:element name="sqlMap">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="statements"/>
+      </xs:choice>
+      <xs:attribute name="namespace" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="statements">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="sql"/>
+      </xs:choice>
+      <xs:attribute name="Category" use="required" type="xs:string"/>
+      <xs:attribute name="Version" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sql">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="id" use="required" id="id"  type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Opertion -->
+  <xs:element name="IsEmpty">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsIf">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsElse"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsElse">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsEqual">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsContains">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsNull">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsGreaterEqual">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsGreater">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLessEqual">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLess">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsNotEmpty">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsNotEqual">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+      <xs:attribute name="CompareValue" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsNotNull">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsIf"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAnd"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+      <xs:attribute name="Property" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IsOr">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsAnd"/>
+        <xs:element ref="IsOrValue"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IsOrValue">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IsAnd">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IsEmpty"/>
+        <xs:element ref="IsEqual"/>
+        <xs:element ref="IsGreaterEqual"/>
+        <xs:element ref="IsGreater"/>
+        <xs:element ref="IsLess"/>
+        <xs:element ref="IsLessEqual"/>
+        <xs:element ref="IsNotEmpty"/>
+        <xs:element ref="IsNotEqual"/>
+        <xs:element ref="IsNotNull"/>
+        <xs:element ref="IsNull"/>
+        <xs:element ref="IsContains"/>
+        <xs:element ref="IsOr"/>
+        <xs:element ref="IsAndValue"/>
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IsAndValue">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+      </xs:choice>
+      <xs:attribute name="Prepend" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+   <!-- Operation-->
+</xs:schema>

@@ -1,0 +1,268 @@
+﻿
+CREATE TABLE MOBISUSER.SS_SQLMAPSTORE
+(
+  SQLID    VARCHAR2(100 BYTE)                   NOT NULL,
+  SQLTEXT  CLOB,
+  CUID     VARCHAR2(20 BYTE),
+  CDATE    DATE                                 DEFAULT Sysdate
+)
+LOB (SQLTEXT) STORE AS (
+  TABLESPACE  USERS
+  ENABLE      STORAGE IN ROW
+  CHUNK       8192
+  PCTVERSION  10
+  NOCACHE
+  LOGGING
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                  FLASH_CACHE      DEFAULT
+                  CELL_FLASH_CACHE DEFAULT
+                 ))
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          3M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      KEEP
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE UNIQUE INDEX MOBISUSER.SS_SQLMAPSTORE_PK ON MOBISUSER.SS_SQLMAPSTORE
+(SQLID)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          320K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE MOBISUSER.SS_SQLMAPSTORE ADD (
+  PRIMARY KEY
+  (SQLID)
+  USING INDEX MOBISUSER.SS_SQLMAPSTORE_PK
+  ENABLE VALIDATE);
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE MOBISUSER.SS_SQLMAPSTORE_LOG
+(
+  SQLID       VARCHAR2(100 BYTE),
+  SQC         NUMBER,
+  CDATE       DATE                              DEFAULT SYSDATE,
+  USER_ID     VARCHAR2(20 BYTE),
+  LOG_TYPE    CHAR(1 BYTE)                      DEFAULT 'C',
+  LOG_DESC    VARCHAR2(2000 BYTE),
+  LOG_BEFORE  CLOB,
+  LOG_AFTER   CLOB
+)
+LOB (LOG_BEFORE) STORE AS (
+  TABLESPACE  USERS
+  ENABLE      STORAGE IN ROW
+  CHUNK       8192
+  PCTVERSION  10
+  NOCACHE
+  LOGGING
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                  FLASH_CACHE      DEFAULT
+                  CELL_FLASH_CACHE DEFAULT
+                 ))
+LOB (LOG_AFTER) STORE AS (
+  TABLESPACE  USERS
+  ENABLE      STORAGE IN ROW
+  CHUNK       8192
+  PCTVERSION  10
+  NOCACHE
+  LOGGING
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                  FLASH_CACHE      DEFAULT
+                  CELL_FLASH_CACHE DEFAULT
+                 ))
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          2M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+
+
+
+
+
+
+CREATE TABLE MOBISUSER.SS_SQLMAPSTORE_AUTH
+(
+  USER_ID     VARCHAR2(20 BYTE)                 NOT NULL,
+  USER_NAME   VARCHAR2(200 BYTE),
+  USER_PHONE  VARCHAR2(20 BYTE),
+  USER_PWD    VARCHAR2(20 BYTE)
+)
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      KEEP
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE UNIQUE INDEX MOBISUSER.SS_SQLMAPSTORE_AUTH_PK ON MOBISUSER.SS_SQLMAPSTORE_AUTH
+(USER_ID)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE MOBISUSER.SS_SQLMAPSTORE_AUTH ADD (
+  PRIMARY KEY
+  (USER_ID)
+  USING INDEX MOBISUSER.SS_SQLMAPSTORE_AUTH_PK
+  ENABLE VALIDATE);
+
+
+
+
+
+
+
+
+CREATE TABLE MOBISUSER.SS_SQLMAPSTORE_USAGE
+(
+  SQLID   VARCHAR2(100 BYTE),
+  PGM_ID  VARCHAR2(200 BYTE),
+  CDATE   DATE                                  DEFAULT SYSDATE
+)
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          448K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      KEEP
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE INDEX MOBISUSER.SS_SQLMAPSTORE_USAGE_I1 ON MOBISUSER.SS_SQLMAPSTORE_USAGE
+(SQLID, PGM_ID)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+

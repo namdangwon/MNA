@@ -1,0 +1,272 @@
+﻿
+CREATE TABLE MOBISUSER.HI_LOG
+(
+  LOG_DATE      CHAR(8 BYTE),
+  LOG_TIME      CHAR(6 BYTE),
+  LOG_SEQ       NUMBER,
+  LOG_TYPE      CHAR(1 BYTE),
+  PGM_ID       VARCHAR2(30 BYTE),
+  PROC_ID      VARCHAR2(30 BYTE),
+  SERVER_NAME  VARCHAR2(50 BYTE),
+  USER_ID       VARCHAR2(100 BYTE),
+  UI_FULL_NAME   VARCHAR2(250 BYTE),
+  FUNCTION_NAME  VARCHAR2(250 BYTE),
+  PARAMETERS   VARCHAR2(500 BYTE),
+  FUNCTION_DURATION  NUMBER                           DEFAULT 0,
+  MSG_ID       VARCHAR2(10 BYTE)                     DEFAULT ' ',
+  MESSAGE      VARCHAR2(4000 BYTE),
+  STACK_TRACE   VARCHAR2(4000 BYTE),
+  ERR_MESSAGE   VARCHAR2(4000 BYTE),
+  CHK_FLAG      CHAR(1 BYTE)                     DEFAULT ' '
+)
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    5
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      KEEP
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE MOBISUSER.HI_LOG IS 'LOG ??? ??';
+
+ 
+
+CREATE INDEX MOBISUSER.HI_LOG_I1 ON MOBISUSER.HI_LOG
+(LOG_TYPE, PGM_ID)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          15M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_I2 ON MOBISUSER.HI_LOG
+("LOG_DATE"||"LOG_TIME")
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_I3 ON MOBISUSER.HI_LOG
+(PGM_ID, PROC_ID, CHK_FLG)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_I4 ON MOBISUSER.HI_LOG
+(LOG_DATE, LOG_TIME)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          10M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      KEEP
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_I5 ON MOBISUSER.HI_LOG
+(LOG_DATE, LOG_SEQ, LOG_TYPE)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          2M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_I6 ON MOBISUSER.HI_LOG
+(PROC_ID, "LOG_DATE"||SUBSTRB("LOG_TIME",1,4))
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          3M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_I7 ON MOBISUSER.HI_LOG
+(LOG_TYPE, PGM_ID, PROC_ID, MSG_ID, MESSAGE)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   164
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX MOBISUSER.HI_LOG_PK ON MOBISUSER.HI_LOG
+(LOG_DATE, LOG_TIME, LOG_SEQ)
+NOLOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
+
+
+
+
+
+CREATE TABLE MOBISUSER.SS_PROC_MONITORING
+(
+  PGM_ID          CHAR(15 BYTE)                 NOT NULL,
+  PROC_ID         CHAR(15 BYTE)                 NOT NULL,
+  PGM_NAME          CHAR(50 BYTE)                 DEFAULT ' ',
+  PROC_NAME         CHAR(50 BYTE)                 DEFAULT ' ',
+  PROC_STATE       CHAR(1 BYTE)                  DEFAULT ' ',
+  DEVICE_STATUS      VARCHAR2(300 BYTE)            DEFAULT ' ',
+  HEARTBIT_CHK_SEC  INTEGER                       DEFAULT 0,
+  HEARTBIT_DATETIME        CHAR(14 BYTE)                 DEFAULT '19000101010000',
+  SERVER_IP          VARCHAR2(15 BYTE)             DEFAULT ' ',
+  SERVER_NAME          VARCHAR2(15 BYTE)             DEFAULT ' ',
+  REG_DATE          CHAR(8 BYTE)                  DEFAULT ' ',
+  REG_TIME          CHAR(6 BYTE)                  DEFAULT ' ',
+  USER_ID          CHAR(10 BYTE)                 DEFAULT ' '
+)
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+ 
+
+
+CREATE UNIQUE INDEX MOBISUSER.SS_PROC_MONITORING_PK ON MOBISUSER.SS_PROC_MONITORING
+(PGM_ID, PROC_ID)
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+
+
